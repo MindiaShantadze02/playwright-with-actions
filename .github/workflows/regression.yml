@@ -3,6 +3,17 @@ on:
     schedule:
         - cron: '0 1 * * 1,2'
     workflow_dispatch:
+        inputs:
+            target_env:
+                description: "Select your target environment"
+                required: true
+                type: choice
+                options:
+                    - development
+                    - staging
+                    - production
+                default:
+                    "development"
 jobs:
     test:
         runs-on: ubuntu-latest
@@ -23,6 +34,7 @@ jobs:
               run: |
                npx playwright install chromium
                npx playwright test --grep @regression
+               echo ${{ inputs.target_env }}
             - uses: actions/upload-artifact@v4
               if: ${{ !cancelled() }}
               with:

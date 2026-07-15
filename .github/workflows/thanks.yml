@@ -35,11 +35,12 @@ jobs:
                     console.log(`comment id: ${comment.data.id}`);
                     console.log(comment.data);
 
-                    github.rest.issues.addLabel({
-                        repo, owner, issue_number,
+                    await github.rest.issues.addLabels({
+                        repo,
+                        owner,
+                        issue_number,
                         labels: ['todo-review']
                     });
-
                     return comment.data.id;
 
             - run: echo 'comment id=${{ steps.issue_script.outputs.result }}'

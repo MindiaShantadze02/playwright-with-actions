@@ -1,6 +1,8 @@
-name: Smoke tests
+name: Regression tests
 on:
-    push:
+    schedule:
+        - cron: '0 1 * * 1,2'
+    workflow_dispatch:
 jobs:
     test:
         runs-on: ubuntu-latest
@@ -18,4 +20,4 @@ jobs:
               run: npm ci
 
             - name: Run the tests
-              run: npx playwright test --grep @smoke
+              run: npx playwright test --grep @regression

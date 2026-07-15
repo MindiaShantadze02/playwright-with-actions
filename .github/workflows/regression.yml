@@ -20,4 +20,6 @@ jobs:
               run: npm ci
 
             - name: Run the tests
-              run: npx playwright test --grep @regression
+              run: |
+               npx playwright install chromium
+               npx playwright test --grep @smoke

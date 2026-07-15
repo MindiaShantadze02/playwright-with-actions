@@ -48,7 +48,7 @@ test.describe("Test suite", () => {
   });
 
   test("Regression 2 demo", { tag: "@regression" }, () => {
-    expect(2 + 2).toBe(4);
+    expect(2 + 2).toBe(5);
   });
 
   test("Regression 3 demo", { tag: "@regression" }, () => {

@@ -22,4 +22,4 @@ jobs:
             - name: Run the tests
               run: |
                npx playwright install chromium
-               npx playwright test --grep @smoke
+               npx playwright test --grep @regression

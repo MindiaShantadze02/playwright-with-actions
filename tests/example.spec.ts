@@ -33,12 +33,14 @@ test.describe("Test suite", () => {
     expect(1 + 1).toBe(2);
   });
 
-  test("Smoke 2 demo", { tag: "@smoke" }, async ({ page }) => {
-    await page.route(/\.css(\?.*)/, async (route) => {
+  test("Smoke 2 demo", { tag: ["@smoke", "@current"] }, async ({ page }) => {
+    await page.route('**/*.css', async (route) => {
       await route.abort();
     })
+
     
     await page.goto(config.dev, { waitUntil: 'load' });
+    await page.waitForTimeout(5000);
     await page.screenshot({ path: "screenshots/screenshot2.png" });
     expect(5 + 5).toBe(10);
   });
